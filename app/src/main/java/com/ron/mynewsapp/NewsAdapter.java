@@ -34,7 +34,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.newsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NewsDetailActivity.start(view.getContext(),newsItem.getDetailsUrl());
+                NewsDetailActivity.start(view.getContext(),newsItem.getDetailsUrl(),newsItem.getTitle());
             }
         });
         Picasso.with(holder.image.getContext()).load(newsItem.getImageUrl()).into(holder.image);
