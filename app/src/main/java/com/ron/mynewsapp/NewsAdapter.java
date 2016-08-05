@@ -8,14 +8,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ron.mynewsapp.model.Article;
 import com.ron.mynewsapp.model.NewsItem;
+import com.ron.mynewsapp.model.NewsResponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder>{
 
-    List<NewsItem> newsItemList = new NewsItem().getNewsItemList();
+    NewsResponse articleList;
+
+    public NewsAdapter(NewsResponse articleList) {
+        this.articleList=articleList;
+    }
 
     @Override
     public NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,26 +31,26 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
-        if (null == newsItemList)
+        if (null == articleList)
             return;
-        final NewsItem newsItem = newsItemList.get(position);
+        final Article newsItem = articleList.getArticles().get(position);
         holder.title.setText(newsItem.getTitle());
-        holder.author.setText(newsItem.getAuthor());
+        holder.author.setText("By " + newsItem.getAuthor());
         holder.description.setText(newsItem.getDescription());
         holder.newsCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NewsDetailActivity.start(view.getContext(),newsItem.getDetailsUrl(),newsItem.getTitle());
+                NewsDetailActivity.start(view.getContext(),newsItem.getUrl(),newsItem.getTitle());
             }
         });
-        Picasso.with(holder.image.getContext()).load(newsItem.getImageUrl()).into(holder.image);
+        Picasso.with(holder.image.getContext()).load(newsItem.getUrlToImage()).into(holder.image);
     }
 
     @Override
     public int getItemCount() {
-        if (null == newsItemList)
+        if (null == articleList)
             return 0;
-        return newsItemList.size();
+        return articleList.getArticles().size();
     }
 
     public class NewsViewHolder extends RecyclerView.ViewHolder {
