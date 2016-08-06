@@ -38,5 +38,6 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.0.+'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.+'
     compile 'com.squareup.okio:okio:1.0.0'
+    compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
     testCompile 'junit:junit:4.12'
 }

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.widget.Toast;
 
+import com.jakewharton.picasso.OkHttp3Downloader;
 import com.ron.mynewsapp.Services.NewsApiService;
 import com.ron.mynewsapp.model.JiraResponse;
 import com.ron.mynewsapp.model.NewsResponse;
@@ -45,6 +46,8 @@ public class NewsSourceActivity extends AppCompatActivity {
                 System.out.println("Failure = ");
             }
         });*/
+
+
         Call<NewsSourceResponse> responseCall = NewsApiService.getNewsSources().getSources();
         responseCall.enqueue(new Callback<NewsSourceResponse>() {
             @Override
