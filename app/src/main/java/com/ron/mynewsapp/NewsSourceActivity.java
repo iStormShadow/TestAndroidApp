@@ -4,12 +4,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.widget.Toast;
 
 import com.ron.mynewsapp.Services.NewsApiService;
+import com.ron.mynewsapp.model.JiraResponse;
 import com.ron.mynewsapp.model.NewsResponse;
 import com.ron.mynewsapp.model.NewsSourceResponse;
+import com.squareup.picasso.OkHttpDownloader;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,11 +28,24 @@ import retrofit2.Response;
 public class NewsSourceActivity extends AppCompatActivity {
 
     RecyclerView newSourceList;
+    String encodedStr = "raunak.nathwani@vodafone.com:14Idontknow";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_source);
+        /*Call<JiraResponse> responseCallJira = NewsApiService.getJiraResponse().getJiraResponse();
+        responseCallJira.enqueue(new Callback<JiraResponse>() {
+            @Override
+            public void onResponse(Call<JiraResponse> call, Response<JiraResponse> response) {
+                System.out.println("response = " + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<JiraResponse> call, Throwable t) {
+                System.out.println("Failure = ");
+            }
+        });*/
         Call<NewsSourceResponse> responseCall = NewsApiService.getNewsSources().getSources();
         responseCall.enqueue(new Callback<NewsSourceResponse>() {
             @Override
