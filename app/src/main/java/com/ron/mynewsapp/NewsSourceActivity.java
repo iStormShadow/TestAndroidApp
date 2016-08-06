@@ -28,7 +28,6 @@ import retrofit2.Response;
 public class NewsSourceActivity extends AppCompatActivity {
 
     RecyclerView newSourceList;
-    String encodedStr = "raunak.nathwani@vodafone.com:14Idontknow";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
