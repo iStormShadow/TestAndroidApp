@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(extras.getString(TITLE));
-        Call<NewsResponse> responseCall = NewsApiService.getNewsApiResponse().getArticles(extras.getString(SOURCE),"top");
+        Call<NewsResponse> responseCall = NewsApiService.getNewsApiResponse().getArticles(extras.getString(SOURCE));
         responseCall.enqueue(new Callback<NewsResponse>() {
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {

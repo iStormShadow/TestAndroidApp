@@ -63,7 +63,7 @@ public class NewsApiService {
 
     public interface NewApiInterface {
         @GET("articles?apiKey=" + APIKEY)
-        Call<NewsResponse> getArticles(@Query("source") String source, @Query("sortBy") String sortBy);
+        Call<NewsResponse> getArticles(@Query("source") String source);
 
         @GET("sources")
         Call<NewsSourceResponse> getSources();
